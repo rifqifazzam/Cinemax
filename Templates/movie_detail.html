@@ -1,0 +1,27 @@
+{% extends 'base.html' %} 
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/movie_detail.css' %}">
+
+{% include 'navbar.html' %}
+
+<div class="movie-detail-page">
+    <div class="movie-detail-container">
+        <div class="movie-poster-card">
+            <img src="{{ movie.poster }}" alt="Movie Poster" />
+        </div>
+
+        <div class="movie-info">
+            <h2>{{ movie.title }}</h2>
+            <p class="age-rating">R {{ movie.age_rating }}</p>
+            <p>Ticket Price: Rp {{ movie.ticket_price }}</p>
+            <p>{{ movie.description }}</p>
+            <a href="{% url 'book_ticket' movie.id %}" class="book-button">Book Now</a>
+        </div>
+    
+    
+    </div>
+</div>
+{% endblock %}

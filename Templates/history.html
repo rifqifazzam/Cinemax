@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% block title %}Transaction History{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+
+<h1>Transaction History</h1>
+
+{% if transactions %}
+  <table>
+    <thead>
+      <tr>
+        <th>Transaction ID</th>
+        <th>Name</th>
+        <th>Movie Title</th>
+        <th>Seat Numbers</th>
+        <th>Date</th>
+        <th>Total Cost</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+        <tr>
+          <td>{{ transaction.id }}</td>
+          <td>{{ transaction.name }}</td>
+          <td>{{ transaction.ticket.movie.title }}</td>
+          <td>{{ transaction.ticket.seats }}</td>
+          <td>{{ transaction.date }}</td>
+          <td>${{ transaction.ticket.total_cost }}</td>
+          <td>
+            <form method="POST" action="{% url 'cancel_ticket' ticket_id=transaction.ticket.id %}">
+              {% csrf_token %}
+              <button type="submit" onclick="return confirm('Are you sure you want to cancel this ticket?')">Cancel</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>No transactions found.</p>
+{% endif %}
+
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message }}");
+    </script>
+  {% endfor %}
+{% endif %}   
+
+
+{% endblock %}

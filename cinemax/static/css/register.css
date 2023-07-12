@@ -1,0 +1,63 @@
+#register_page{
+    width: 100%;
+    background-image: url("/static/images/bg_login2.jpg");
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#register_page h1{
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    width: 90%;
+    background-color: rgba(3, 3, 3, 0.9);
+    
+    padding: 20px;
+    padding-bottom: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-radius: 10px;
+}
+
+form input{
+    font-size: small;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #0F0F0F;
+    border-radius: 5px;
+    background-color: #333333;
+    color: #BDC7C9;
+}
+
+
+form input:focus{
+    color: #d3d3d3;
+}
+
+.datar_button{
+    background-color: #FF0000;
+    color: white;
+    font-size: small;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+form p{
+    color: #BDC7C9;
+}
+
+form p a{
+    color: #FF0000;
+    margin-left: 5px;
+}

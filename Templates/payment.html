@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+<h1>Payment</h1>
+
+<p>Total Cost: ${{ total_cost }}</p>
+<p>Tickets Bought: {{ num_tickets }}</p>
+
+<form method="POST" action="{% url 'cancel_booking' ticket_id=ticket.id %}">
+  {% csrf_token %}
+  <button type="submit" onclick="return confirm('Are you sure you want to cancel this booking?')">Cancel</button>
+</form>
+
+{% if profile.balance >= total_cost %}
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Pay with Balance</button>
+  </form>
+{% else %}
+  <p>Insufficient balance. Please top up your balance.</p>
+  <a href="{% url 'top_up' %}">Top Up Balance</a>
+{% endif %}
+
+{% endblock %}

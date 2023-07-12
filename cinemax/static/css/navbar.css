@@ -1,0 +1,41 @@
+nav{
+}
+
+.fa-money{
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
+nav ul{
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #0F0F0F;
+    width: 100%;
+    z-index: 1;
+    
+    display: flex;
+    flex: 50%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    
+    height: 60px;
+    padding: 0 5%;
+    margin-bottom: 0;
+}
+
+nav li{
+    float: left;
+    display: block;
+    margin: 0 10px;
+}
+
+nav li a{
+    color: aliceblue;
+    font-size: 1.2rem;
+}
+
+nav li a:hover{
+    color: #ee0d0d;
+}

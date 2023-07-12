@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Wallet{% endblock %}
+{% block content %}
+
+{% include 'navbar.html' %}
+
+<!-- wallet.html -->
+<h1>Welcome to Your Wallet</h1>
+<p>Your current balance: Rp. {{ user.profile.balance }}</p>
+
+{% comment %} render the messages {% endcomment %}
+{% if messages %}
+  {% for message in messages %}
+    <p>{{ message }}</p>
+  {% endfor %}
+{% endif %}
+
+<form action="{% url 'withdraw' %}" method="POST" id="withdraw-form">
+    {% csrf_token %}
+    <input type="number" name="amount" placeholder="Withdraw amount">
+    <button type="submit">Withdraw</button>
+  </form>
+  
+  <form action="{% url 'top_up' %}" method="POST">
+    {% csrf_token %}
+    <input type="number" name="amount" placeholder="Top-up amount">
+    <button type="submit">Top-up</button>
+  </form>
+  
+  <script>
+    // Refresh the page after 2 minutes (120,000 milliseconds)
+    setTimeout(function() {
+      location.reload();
+    }, 120000);
+  </script>
+
+{% endblock %}
+
+

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/login.css' %}">
+
+<div id="login_page">
+        <form action="" method="POST">
+            <h1> Sign In </h1>
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" class="password" name="password" placeholder="Kata Sandi">
+            <div class="show-password-container">
+                <input type="checkbox" id="show_password">
+                <p for="show_password">Show Password</p>
+            </div>
+            <input type="submit" value="Masuk" class="datar_button">
+
+            <p> Belum punya akun? <a href="{% url 'register' %}"> Daftar</a> </p>
+
+            <div id="error">
+                {% if errors %} {% for field, error in errors.items %}
+                <div class="alert alert-danger">{{ error|join:", " }}</div>
+                {% endfor%} {% endif %} 
+            </div>
+        </form>
+</div>
+
+<script>
+    // Get the show password checkbox
+    var showPasswordCheckbox = document.getElementById('show_password');
+
+    // Get the password input field
+    var passwordInput = document.querySelector('.password');
+
+    // Add event listener to toggle password visibility
+    showPasswordCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
+{% endblock %}

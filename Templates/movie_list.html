@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SEA Cinema - Movie List</title>
+</head>
+<body>
+    <h1>Movie List</h1>
+    <ul>
+        {% for movie in movies %}
+            <li>
+                <h2>{{ movie.title }}</h2>
+                <p>{{ movie.description }}</p>
+                <p>Age Rating: {{ movie.age_rating }}</p>
+                <img src="{{ movie.poster_url }}" alt="Movie Poster">
+                <p>Ticket Price: {{ movie.ticketPrice }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

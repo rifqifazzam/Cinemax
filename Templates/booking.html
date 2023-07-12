@@ -1,0 +1,133 @@
+{% extends 'base.html' %} 
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+
+<style>
+  .container {
+    columns: 4;
+    -webkit-columns: 3;
+    -moz-columns: 3;
+  }
+
+  .seat-label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+</style>
+
+{% include 'navbar.html' %}
+
+
+<h1>Book Tickets</h1>
+
+<p><strong>Movie:</strong> {{ movie.title }}</p>
+<p><strong>Price:</strong> {{ movie.ticket_price }}</p>
+
+<form id="booking-form" method="POST" action="{% url 'book_ticket' movie_id=movie.id %}">
+  {% csrf_token %}
+  
+  <div class="container">
+    {% for seat in seats %}
+      <label class="seat-label">
+        <input type="checkbox" name="seats" value="seat_{{ seat.number }}" data-price="{{ movie.ticket_price }}" {% if not seat.available %}disabled{% endif %}>
+        Seat {{ seat.number }}
+      </label>
+    {% endfor %}
+  </div>
+
+  <p><strong>Total Ticket Price: <span id="total-price">0</span></strong></p>
+
+  <p><strong>Selected Seats:</strong></p>
+  <ul id="selected-seats"></ul>
+    
+  <label for="name">Name:</label>
+  <input type="text" name="name" value="{{ request.user.first_name }}"><br><br>
+  
+  <label for="age">Age:</label>
+  <input type="number" name="age" value="{{ profile.age }}"><br><br> 
+  
+  <button type="submit">Book and Pay</button>
+
+
+
+</form>
+
+
+
+
+
+{% if messages %}
+  {% for message in messages %}
+    <script>
+      alert("{{ message }}");
+      if (getParameterByName('balance_error')) {
+        window.location.href = "{% url 'book_ticket' movie_id=movie.id %}";
+      }
+    </script>
+  {% endfor %}
+{% endif %}   
+
+
+<script>
+  // Get references to HTML elements
+  const form = document.getElementById('booking-form');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  const totalPriceElement = document.getElementById('total-price');
+  const selectedSeatsElement = document.getElementById('selected-seats');
+
+  // Initialize total price and selected seats
+  let totalPrice = 0;
+  let selectedSeats = [];
+
+  // Update total price and selected seats
+  function updatePreview() {
+    totalPrice = 0;
+    selectedSeats = [];
+
+    checkboxes.forEach((checkbox) => {
+      if (checkbox.checked) {
+        const price = parseInt(checkbox.dataset.price);
+        totalPrice += price;
+        selectedSeats.push(checkbox.value);
+      }
+    });
+
+    totalPriceElement.textContent = totalPrice;
+    selectedSeatsElement.innerHTML = selectedSeats.map(seat => `<li>${seat}</li>`).join('');
+  }
+
+  // Add event listener to checkboxes
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', updatePreview);
+  });
+
+  // Add event listener to form submission
+  form.addEventListener('submit', () => {
+    // Update hidden input with selected seats
+    const selectedSeatsInput = document.createElement('input');
+    selectedSeatsInput.type = 'hidden';
+    selectedSeatsInput.name = 'selected_seats';
+    selectedSeatsInput.value = selectedSeats.join(',');
+    form.appendChild(selectedSeatsInput);
+  });
+</script>
+
+
+{% endblock %}

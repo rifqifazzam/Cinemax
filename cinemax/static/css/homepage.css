@@ -1,0 +1,34 @@
+.movie_container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+
+.movie_wrapper h2{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 10px 0;
+    color: #ee0d0d;
+}
+
+.movie_wrapper{
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.movie_wrapper img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie_info{
+    padding: 10px;
+}

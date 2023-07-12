@@ -1,0 +1,20 @@
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/navbar.css' %}">
+
+<nav>
+    <ul>
+        {% comment %} if user isnt authentcated {% endcomment %}
+        {% if not user.is_authenticated %}
+        <li><a href="{% url 'login' %}">login</a></li> 
+        <li><a href="{% url 'register' %}">register</a></li>  
+        {% else %}
+        {% comment %} get the user balance in user_profile {% endcomment %}
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'wallet' %}"><i class="fa fa-money" aria-hidden="true"></i>
+            {{ user.profile.balance }}</a></li>
+        <li><a href="{% url 'history' %}">History</a></li> 
+        <li><a href="{% url 'logout' %}">logout</a></li> 
+        {% endif %}
+    </ul>
+</nav> 
+

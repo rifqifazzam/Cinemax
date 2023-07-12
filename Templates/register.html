@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/register.css' %}">
+
+<div id="register_page">
+    <div class="register-form">
+        <form method="post">
+            <h1> Register </h1>
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username">
+            <input type="text" name="fullname" placeholder="Full Name"> 
+            <input type="email" name="email" placeholder="Email">
+            <input type="age" name="age" placeholder="Umur">
+            <input type="password" class="password1" name="password1" placeholder="Kata Sandi">
+            <input type="password" class="password2" name="password2" placeholder="Konfirmasi Kata Sandi">
+            <input type="submit" value="Daftar" class="datar_button">
+
+            <p> Sudah punya akun? <a href="{% url 'login' %}"> Masuk </a> </p>
+
+            <div id="error">
+                {% if errors %} {% for field, error in errors.items %}
+                <div class="alert alert-danger">{{ error|join:", " }}</div>
+                {% endfor%} {% endif %} 
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+```
