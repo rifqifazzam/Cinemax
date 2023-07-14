@@ -1,0 +1,96 @@
+#container-booking{
+    display: flex;
+    flex-direction: column;
+    padding: 0 2%;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    color: rgb(254, 217, 147);
+    /* align it center */
+    align-items: center;
+    padding-top: 100px;
+}
+
+#container-booking > h1{
+  color: rgb(231, 168, 51);
+}
+
+.arrangement-seat{
+  width: 80%;
+  align-self: center;
+
+}
+
+.arrangement-seat img{
+  width: 70%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+.seats-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.seat{
+        display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: #ccc;
+      border-radius: 5px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+      color: black;
+}
+
+.seat.selected {
+    background-color: #45a049;
+  }
+  
+.seat.booked {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+
+#container-booking button[type="submit"] {
+  display: block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
+  
+}
+
+#container-booking button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.selected-seats-container > p{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* margin-top: 20px; */
+}
+
+.selected-seats-container{
+  background-color: aliceblue;
+  padding: 10px;
+  border-radius: 5px;
+  color: black;
+}
+
+.purchase-info > p{
+  color: white;
+  margin-bottom: 15px;
+}

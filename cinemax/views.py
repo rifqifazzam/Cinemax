@@ -17,9 +17,17 @@ import requests
 
 # Create your views here.
 def homepage(request):
-    # get the movie from table
-    movies = Movie.objects.all()
-    return render(request, 'homepage.html', {'movies': movies})
+    # get all movies
+    all_movies = Movie.objects.all()
+    # create a dictionary to track unique movie titles
+    unique_titles = {}
+    # iterate over movies to filter out duplicates
+    for movie in all_movies:
+        unique_titles[movie.title] = movie.id
+    # retrieve unique movies based on filtered titles
+    unique_movies = Movie.objects.filter(id__in=unique_titles.values())
+
+    return render(request, 'homepage.html', {'movies': unique_movies})
 
 def register(request):
     if request.method == 'POST':
@@ -71,11 +79,9 @@ def loginview(request):
     elif request.method == 'GET': 
         return render(request, 'login.html')
 
-
 def logoutview(request):
     logout(request)
     return redirect('homepage')
-
 
 def movie_list(request):
     url = 'https://seleksi-sea-2023.vercel.app/api/movies'
@@ -94,18 +100,9 @@ def movie_list(request):
 
     return render(request, 'movie_list.html', {'movies': movies_data})
 
-
 def movie_detail(request, movie_id):
     movie = get_object_or_404(Movie, pk=movie_id)
     return render(request, 'movie_detail.html', {'movie': movie})
-
-
-def wallet(request):
-    if request.method == 'GET':
-        return render(request, 'wallet.html')
-    elif request.method == 'POST':
-        return redirect('homepage')
-    
 
 def withdraw(request):
     if request.method == 'POST':
@@ -117,8 +114,7 @@ def withdraw(request):
             # Add any additional logic or redirect as needed
         else:
             messages.info(request, f'Insufficient Balance')
-    return redirect('wallet')
-
+    return redirect('homepage')
 
 def top_up(request):
     if request.method == 'POST':
@@ -127,8 +123,7 @@ def top_up(request):
         profile.balance += amount
         profile.save()
         # Add any additional logic or redirect as needed
-    return redirect('wallet')
-
+    return redirect('homepage')
 
 def book_ticket(request, movie_id):
     movie = Movie.objects.get(pk=movie_id)
@@ -150,9 +145,8 @@ def book_ticket(request, movie_id):
             seats.append({'number': seat, 'available': True})
 
     if request.method == 'POST':
-        age = request.POST['age']
-        age = int(age)
-        name = request.POST['name']
+        age = request.user.profile.age
+        name = request.user.first_name
 
         selected_seats = []
         for seat in request.POST.getlist('seats'):
@@ -168,7 +162,7 @@ def book_ticket(request, movie_id):
             return redirect('book_ticket', movie_id=movie_id)
 
         # Check if user's age is below movie's age rating
-        if  age < int(movie.age_rating):
+        if  request.user.profile.age < int(movie.age_rating):
             messages.error(request, "You are not old enough to book tickets for this movie.")
             return redirect('book_ticket', movie_id=movie_id)
 

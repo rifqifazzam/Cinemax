@@ -8,7 +8,6 @@ urlpatterns = [
     path('logout/', views.logoutview, name='logout'),
     path('movies/', views.movie_list, name='movie_list'),  
     path('movies/<int:movie_id>/', views.movie_detail, name='movie_detail'),
-    path('wallet/', views.wallet, name='wallet'),
     path('withdraw/', views.withdraw, name='withdraw'),
     path('top-up/', views.top_up, name='top_up'),
     path('book_ticket/<int:movie_id>/', views.book_ticket, name='book_ticket'),

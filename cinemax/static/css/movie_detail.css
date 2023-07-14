@@ -49,7 +49,7 @@
 }
 
 .movie-info h2{
-    font-size: 2rem;
+   font-size: clamp(2rem, 2.31136rem + -1.311vw, 1rem);
 }
 
 .movie-info .age-rating {
@@ -66,9 +66,10 @@
     width: 90%;
     color: #9c9c9c;
     margin-top: 20px;
+    font-size: clamp(0.875rem, 0.7812rem + 0.469vw, 1.25rem);
+    text-align: justify;
+
 }
-
-
 
 .book-button {
     display: inline-block;
@@ -83,6 +84,7 @@
 
     margin-top: 20px;
     width: 130px;
+
 }
 
 .book-button:hover {
@@ -90,3 +92,13 @@
 }
 
 
+
+/* media 640 */
+@media (max-width: 640px) {
+    .movie-detail-container{
+        flex-direction: column;
+        margin-bottom: 5%;
+        height: auto;
+        padding-bottom: 50px;
+    }
+}

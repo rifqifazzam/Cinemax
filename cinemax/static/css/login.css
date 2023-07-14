@@ -82,3 +82,21 @@ form p a{
     font-size: small;
     margin-left: 10px;
 }
+
+#home_icon{
+    position: fixed;
+    bottom:10px;
+    right: 10px;
+    margin: 20px;
+    z-index: 9999;
+    color: #FF0000;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    #home_icon{
+        font-size: 2rem;
+        bottom:0px;
+    }
+  }

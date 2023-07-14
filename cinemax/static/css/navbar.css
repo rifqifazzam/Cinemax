@@ -1,41 +1,128 @@
-nav{
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 99;
 }
 
-.fa-money{
+.fa-money {
     color: #ffffff;
     font-size: 1.5rem;
     margin-right: 5px;
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
     overflow: hidden;
     background-color: #0F0F0F;
     width: 100%;
     z-index: 1;
-    
+
     display: flex;
-    flex: 50%;
     flex-direction: row;
-    justify-content: flex-end;
     align-items: center;
-    
+    justify-content: space-between;
+
     height: 60px;
-    padding: 0 5%;
+    padding: 0 2%;
     margin-bottom: 0;
 }
 
-nav li{
-    float: left;
-    display: block;
-    margin: 0 10px;
-}
 
-nav li a{
+nav li a {
     color: aliceblue;
     font-size: 1.2rem;
 }
 
-nav li a:hover{
+nav li a:hover {
     color: #ee0d0d;
 }
+
+.li-right{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.li-right li{
+    margin: 0 10px ;
+
+}
+
+.nav #logo{
+    display:flex; 
+    justify-content: flex-start;
+}
+
+.nav  #logo a{
+    font: 20px 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+.red{
+    color:#ee0d0d;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #555;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#withdraw-form button, #topup-form button  {
+    /* give it a green pastel bg */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.modal-content input {
+    padding: 5px 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border: 1px solid #1c4fce;
+}
+

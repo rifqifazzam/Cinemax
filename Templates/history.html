@@ -2,16 +2,18 @@
 {% block title %}Transaction History{% endblock %}
 
 {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static '/css/history.css' %}">
+
 {% include 'navbar.html' %}
+<div class="history_page">
 
-
-<h1>Transaction History</h1>
+<h1 class="page_title">Transaction History</h1>
 
 {% if transactions %}
   <table>
     <thead>
       <tr>
-        <th>Transaction ID</th>
         <th>Name</th>
         <th>Movie Title</th>
         <th>Seat Numbers</th>
@@ -23,12 +25,11 @@
     <tbody>
       {% for transaction in transactions %}
         <tr>
-          <td>{{ transaction.id }}</td>
           <td>{{ transaction.name }}</td>
           <td>{{ transaction.ticket.movie.title }}</td>
           <td>{{ transaction.ticket.seats }}</td>
-          <td>{{ transaction.date }}</td>
-          <td>${{ transaction.ticket.total_cost }}</td>
+          <td>{{ transaction.ticket.date }}</td>
+          <td>Rp.{{ transaction.ticket.total_cost }}</td>
           <td>
             <form method="POST" action="{% url 'cancel_ticket' ticket_id=transaction.ticket.id %}">
               {% csrf_token %}
@@ -40,7 +41,7 @@
     </tbody>
   </table>
 {% else %}
-  <p>No transactions found.</p>
+  <p class="no_transaction">No transactions found.</p>
 {% endif %}
 
 {% if messages %}
@@ -51,5 +52,5 @@
   {% endfor %}
 {% endif %}   
 
-
+<div>
 {% endblock %}

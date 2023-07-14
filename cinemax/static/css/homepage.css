@@ -1,6 +1,12 @@
-.movie_container{
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+#homepage{
+    padding: 0 2%;
+    background-color: #0F0F0F;
+    /* make it full screen height */
+    min-height: 100vh;
+    height: auto;
+    flex-direction: column;
+    display: flex;
+    
 }
 
 a {
@@ -8,19 +14,43 @@ a {
     color: black;
 }
 
+.movie-list-header{
+    color: gold;
+    font-size: 2rem;
+    padding: 0 10px;
+    
+}
 
-.movie_wrapper h2{
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 10px 0;
-    color: #ee0d0d;
+.movie_container {
+    display: grid;
+    gap: 40px 10px;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 20px 0;
 }
 
 .movie_wrapper{
     margin: 10px;
     border-radius: 10px;
     overflow: hidden;
+    max-height: 380px;
+    height: 100%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    width: 90%;
+    background-color: #333333;
+    /* give hover effect */
+    transition: all 0.3s ease-in-out;
+}
+
+.movie_wrapper:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 0 rgba(255, 173, 31, 0.5);
+}
+
+.movie_wrapper h2{
+    font-size: clamp(0.875rem, 0.7812rem + 0.469vw, 1.25rem);
+    font-weight: 700;
+    margin: 10px 0;
+    color: #ffeeee;
 }
 
 .movie_wrapper img{
@@ -30,5 +60,29 @@ a {
 }
 
 .movie_info{
-    padding: 10px;
+    padding: 5px 10px;
 }
+
+
+  
+  /* Media query for screen widths less than 768px */
+  @media (max-width: 767px) {
+    .movie_container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Media query for screen widths between 768px and 1023px */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .movie_container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Media query for screen widths greater than or equal to 1024px */
+  @media (min-width: 1024px) {
+    .movie_container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  

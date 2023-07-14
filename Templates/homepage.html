@@ -6,7 +6,8 @@
 
 {% include 'navbar.html' %}
 
-<h1>Movie List</h1>
+<div id="homepage">
+<h1 class="movie-list-header">Movie List</h1>
 <div class="movie_container">
     {% for movie in movies %}
     <a href="{% url 'movie_detail' movie.id %}">
@@ -14,17 +15,20 @@
             <img src="{{ movie.poster }}" alt="Movie Poster">
             <div class="movie_info">
                 <h2>{{ movie.title }}</h2>
-                {% if movie.description|length <= 100 %}
-                <p>{{ movie.description }}</p>
-                {% else %}
-                    <p>{{ movie.description|slice:":100" }}...</p>
-                {% endif %}
-                {% comment %} <p>Age Rating: {{ movie.age_rating }}</p>
-                <p>Ticket Price: {{ movie.ticket_price }}</p> {% endcomment %}
             </div>
         </div>
     </a>
     {% endfor %}
 </div>
 
+</div>
+
 {% endblock %}
+
+{% comment %} {% if movie.description|length <= 100 %}
+<p>{{ movie.description }}</p>
+{% else %}
+    <p>{{ movie.description|slice:":100" }}...</p>
+{% endif %} {% endcomment %}
+{% comment %} <p>Age Rating: {{ movie.age_rating }}</p>
+<p>Ticket Price: {{ movie.ticket_price }}</p> {% endcomment %}

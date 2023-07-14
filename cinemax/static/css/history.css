@@ -1,0 +1,54 @@
+.page_title , .no_transaction{
+  color: white;
+}
+
+.page_title{
+  color: goldenrod;
+  padding-bottom:2px ;
+  border-bottom: 1px solid goldenrod;
+}
+
+.no_transaction{
+  margin-top: 10%;
+  text-align: center;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+
+tr {
+  font-size: clamp(0.3rem, 0.7812rem + 0.469vw, 1.25rem);
+  background-color: #9c9c9c;
+  background-color: #f2f2f2;
+}
+
+tr >{
+  font-size: clamp(0.1rem, 0.7812rem + 0.469vw, 1.25rem);
+}
+
+th {
+  background-color: #ddd;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #df3f2e;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e01414;
+}

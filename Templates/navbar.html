@@ -2,19 +2,82 @@
 <link rel="stylesheet" href="{% static '/css/navbar.css' %}">
 
 <nav>
-    <ul>
-        {% comment %} if user isnt authentcated {% endcomment %}
-        {% if not user.is_authenticated %}
-        <li><a href="{% url 'login' %}">login</a></li> 
-        <li><a href="{% url 'register' %}">register</a></li>  
-        {% else %}
-        {% comment %} get the user balance in user_profile {% endcomment %}
-        <li><a href="{% url 'homepage' %}">Home</a></li>
-        <li><a href="{% url 'wallet' %}"><i class="fa fa-money" aria-hidden="true"></i>
-            {{ user.profile.balance }}</a></li>
+  <ul>
+    <li id="logo"><a href="{% url 'homepage' %}">CINE<span class="red">MAX</span></a></li>
+    <div class="li-right">
+      {% if not user.is_authenticated %}
+        <li><a href="{% url 'login' %}">Login</a></li> 
+        <li><a href="{% url 'register' %}">Register</a></li>  
+      {% else %}
+        <li>
+          <a href="#" id="wallet-link">
+            <i class="fa-solid fa-wallet"></i>
+            Rp. {{ user.profile.balance }}
+          </a>
+        </li>
         <li><a href="{% url 'history' %}">History</a></li> 
-        <li><a href="{% url 'logout' %}">logout</a></li> 
-        {% endif %}
-    </ul>
-</nav> 
+        <li><a href="{% url 'logout' %}">Logout</a></li> 
+      {% endif %}
+    </div>
+  </ul>
+</nav>
 
+<!-- Wallet Modal -->
+<div id="wallet-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h1>My Wallet</h1>
+      <p>Your current balance: Rp. {{ user.profile.balance }}</p>
+  
+      {% if messages %}
+        {% for message in messages %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+  
+      <form action="{% url 'withdraw' %}" method="POST" id="withdraw-form">
+        {% csrf_token %}
+        <input type="number" name="amount" placeholder="Withdraw amount" required>
+        <button type="submit">Withdraw</button>
+      </form>
+  
+      <form action="{% url 'top_up' %}" method="POST" id="topup-form">
+        {% csrf_token %}
+        <input type="number" name="amount" placeholder="Top-up amount">
+        <button type="submit">Top-up</button>
+      </form>
+
+    </div>
+  </div>
+  
+
+<script>
+  // Get the wallet modal element
+  const modal = document.getElementById('wallet-modal');
+
+  // Get the wallet link element
+  const walletLink = document.getElementById('wallet-link');
+
+  // Get the close button element
+  const closeBtn = document.getElementsByClassName('close')[0];
+
+  // Open the wallet modal when the wallet link is clicked
+  walletLink.addEventListener('click', function() {
+    modal.style.display = 'block';
+  });
+
+  // Close the wallet modal when the close button is clicked
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+  });
+
+  // Close the wallet modal when the user clicks outside of it
+  window.addEventListener('click', function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  });
+
+
+  
+</script>
