@@ -43,6 +43,27 @@ Start the development server using
 
 **Back-end** Django
 
+## Screenshots
+
+<!-- add image docum -->
+<!-- get from screenshot folder -->
+### Registation and Login
+<img src="Screenshot/Sign-in.png">
+<img src="Screenshot/Register.png">
+
+### Homepage
+<img src="Screenshot/Homepage.png">
+
+### Movie Details
+<img src="Screenshot/Movie-details.png">
+
+### Booking
+<img src="Screenshot/Booking.png">
+
+### Transaction History
+<img src="Screenshot/History.png">
+
+
 
 ## Documentation
 
