@@ -20,26 +20,26 @@ This is a web application built using Django that allows users to book movie tic
 
 Clone the repository to your local machine.
 ```bash
- git clone https://github.com/rifqifazzam/Cinemax.git
+git clone https://github.com/rifqifazzam/Cinemax.git
 ```
 Navigate to the project directory:
 ```bash
-  cd Cinemax
+cd Cinemax
 ```
 
 Install the project dependencies using
 ```bash
- pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Run the database migrations 
 ```bash
- python manage.py migrate
+python manage.py migrate
 ```
 
 Start the development server using
 ```bash
- python manage.py runserver
+python manage.py runserver
 ```
 ## Tech Stack
 
