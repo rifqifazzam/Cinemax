@@ -1,1 +1,1 @@
-fontawesomefree==version_number
+fontawesomefree==6.4.0
