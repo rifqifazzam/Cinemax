@@ -47,20 +47,20 @@ Start the development server using
 
 <!-- add image docum -->
 <!-- get from screenshot folder -->
-### Registation and Login
+#### Registation and Login
 <img src="Screenshot/Sign-in.png">
 <img src="Screenshot/Register.png">
 
-### Homepage
+#### Homepage
 <img src="Screenshot/Homepage.png">
 
-### Movie Details
+#### Movie Details
 <img src="Screenshot/Movie-details.png">
 
-### Booking
+#### Booking
 <img src="Screenshot/Booking.png">
 
-### Transaction History
+#### Transaction History
 <img src="Screenshot/History.png">
 
 
