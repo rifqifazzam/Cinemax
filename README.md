@@ -64,6 +64,9 @@ python manage.py runserver
 #### Booking
 <img src="Screenshot/Booking.png">
 
+#### Wallet
+<img src="Screenshot/Wallet.png">
+
 #### Transaction History
 <img src="Screenshot/History.png">
 
